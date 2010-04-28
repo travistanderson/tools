@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page_title %}Tags for {{tag_name}}{% endblock page_title %}
+
+{% block page_scripts %}
+<script type="text/javascript"> 
+	function setDisplay(id,value) 
+	{
+    	document.getElementById(id).style.display = value; 
+	} 
+</script>
+{% endblock page_scripts%}
+
+{% block body %}
+
+<div id="edittag">
+		<form action="" method="post" id="edittag-form">
+				<p>Insert the new name of the tag, then click <i>Save</i></p>
+				<input type="text" name="edittag" id="id_edittag" size="50" value="{{tag_name}}" />
+				<input type="hidden" name="this_is_the_edittag_form" value="1" />
+				<input type="submit" class="button" value="Save" />
+				&nbsp;&nbsp;&nbsp;
+				</form>	
+</div>
+
+{% if hasTags %}
+		<p>
+		<a href="" class="noclicklink" onclick="setDisplay('edittag', 'block');return false;" style="float: right;">Edit This Tag</a>
+		These are the tags listed under the <i>{{tag_name}}</i> Tag.
+		</p>
+		<div id="tagsets">
+			{% for tag in tags %}
+				{% if tag.children %}
+					<a href="{{tag.tagId}}">{{tag.tagName}}</a> <br />
+						{% for child in tag.children %}
+							-----	<a href="{{child.tagId}}">{{child.tagName}}</a> <br />
+							{% for gchild in child.children %}
+								----------	<a href="{{gchild.tagId}}">{{gchild.tagName}}</a> <br />	
+							{% endfor %}
+						{% endfor %}
+				{% else %}
+					<a href="{{tag.tagId}}">{{tag.tagName}}</a> <br />
+				{% endif %}
+				<br />
+			{% endfor %}
+			<br />
+			<br />
+		</div>
+	{% else %}
+	
+		<p>
+			<div id="removetag">
+				<input type="submit" class="button" style="display: inline block; float: right;" onclick="setDisplay('edittag', 'block');return false;" value="Edit This Tag" />
+				<form action="" method="post" id="removetag-form" style="display: inline block; float: right;">
+					<input type="hidden" name="this_is_the_removetag_form" value="1" />
+					<input type="submit" class="button" value="Delete This Tag" />
+				</form>	
+				&nbsp;&nbsp;&nbsp;
+			</div>
+			There are no tags listed under <i>{{tag_name}}.</i>
+		</p>	
+	
+	{% endif %}
+	
+
+	<a href="" class="noclicklink" onclick="setDisplay('newtag', 'block');return false;">Add New Child Tag</a>
+	
+	<div id="newtag">
+		<form action="" method="post" id="newtag-form">
+				<p>Insert the name of the new tag below, then click <i>Save</i></p>
+				<input type="text" name="newtag" id="id_newtag" size="50" />
+				<input type="hidden" name="this_is_the_newtag_form" value="1" />
+				<input type="submit" class="button" value="Save" />
+				&nbsp;&nbsp;&nbsp;
+				</form>	
+	</div>
+{% endblock body %}

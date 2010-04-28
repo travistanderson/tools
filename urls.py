@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
-
-# Uncomment the next two lines to enable the admin:
+import settings
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -14,5 +14,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
-    (r'', 'tool.views.index')
+    (r'^user/', include('tools.tiq_login.urls')),
+    (r'^tags/', include('tools.tags.urls')),
+    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+    	{'document_root':  settings.STATIC_DOC_ROOT}),
+    (r'', 'dashboard.views.index')
 )

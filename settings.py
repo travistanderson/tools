@@ -9,9 +9,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = ''             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
+DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = 'tools'             # Or path to database file if using sqlite3.
+DATABASE_USER = 'root'             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
@@ -47,6 +47,8 @@ MEDIA_URL = ''
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = 'http://hstatic.net/common/django-admin-media/'
 
+STATIC_DOC_ROOT = '/Users/rjett/django-projects/tools/site_media'
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'e^_7pwutti=bz_r3*bfwa3_1k6msauzxpn!x7-d3=a+6q7d+h='
 
@@ -69,6 +71,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    'templates/'
 )
 
 INSTALLED_APPS = (
@@ -77,7 +80,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
 	'django.contrib.admin',
+	'tools.dashboard',
+	'tools.tiq_login',
 )
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+AUTHENTICATION_BACKENDS = ('tools.tiq_login.tiq_backend.TiqLoginBackend',)
+AUTH_PROFILE_MODULE = 'tiq_login.TiqUserProfile'
+
+LOGIN_URL = '/user/login'
+LOGIN_REDIRECT_URL = '/'
 
 try:
     from local_settings import *

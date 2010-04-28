@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page_title %}Authenticate{% endblock page_title %}
+
+{% block body %}
+
+<div id="signup" style="padding-left: 20px;">
+
+<h3>Verify Login</h3>
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<form action="{{ app_path }}" method="post" id="login-form">
+  <div class="form-row">
+    <label for="id_username">{% trans 'Username:' %}</label> <input type="text" name="username" id="id_username" />
+  </div>
+  <div class="form-row">
+    <label for="id_password">{% trans 'Password:' %}</label> <input type="password" name="password" id="id_password" />
+    <input type="hidden" name="this_is_the_login_form" value="1" />
+  </div>
+  <div class="submit-row">
+    <input type="hidden" name="next" value="{{ next }}" />
+    <label>&nbsp;</label><button type="submit">Verify</button>
+  </div>
+</form>
+</div>
+
+<div id="signup-help">
+
+<p style="padding-top: 32px; margin-right: 100px;">In order to do what you've requested, we need to verify your login information. We apologize for the inconvenience. Please enter your username and password and we'll send you right along.</p>
+
+<p style="margin-top: 20px;">If you're not {{ user.first_name }}, <a href="/user/logout">click here to log out.</a></p>
+
+</div>
+
+
+{% endblock body %}

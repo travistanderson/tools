@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page_title %}Login{% endblock page_title %}
+
+{% block body %}
+
+<p id="message">You have been logged out. You will be redirected to the home page in <span id="countdown">x</span> seconds.</p>
+
+
+<script type="text/javascript">
+
+//change below target URL to your own
+var targetURL="/"
+//change the second to start counting down from
+
+var countdownfrom=5;
+var currentsecond = countdownfrom+1
+
+function countredirect()
+{
+   if (currentsecond!=1)
+   {
+      currentsecond-=1
+      $('span#countdown').html(currentsecond)
+   }
+   else
+   {
+      $('p#message').html('Redirecting...');
+      window.location=targetURL
+      return
+   }
+   setTimeout("countredirect()",1000)
+}
+
+countredirect()
+
+</script>
+
+<p>Go to the <a href="/">Home Page</a> now.</p>
+
+{% endblock %}

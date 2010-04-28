@@ -1,0 +1,4 @@
+DFS_HOSTNAME = '10.3.20.12';
+DFS_DATABASE = 'dfs_contacts';
+DFS_USERNAME = 'dfs';
+DFS_PASSWORD = 'fVxj9EyxZBs';

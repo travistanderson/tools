@@ -1,10 +1,135 @@
 <html>
 <head>
 	<title> HISG IT Tools</title>
+	
+	<link rel="stylesheet" type="text/css" href="/site_media/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="/site_media/css/pro_dropdown_2.css" />
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+	<script type="text/javascript" src="/site_media/js/stuHover.js"></script>
+
+	{% block page_scripts %}
+	{%endblock page_scripts %}
 </head>
 <body>
+
+
+<div id="content">
+	<div id="loginheader">
+	<div id="login">
+	 		{% block user_auth %}
+				{% if user.is_authenticated %}
+					&nbsp;Logged in as: <strong>{{ user.first_name }}</strong>
+					&nbsp;&nbsp;<a class="noclicklink" href="/user/logout">Logout</a>
+				{% else %}
+					<form action="/user/login" method="post" id="login-form">
+					&nbsp;
+					<label for="id_username">Login:</label>
+					<input type="text" name="username" id="id_username" size="10"  style="z-index: 600;"/>
+					<input type="password" name="password" id="id_password" size="10" />
+					<input type="hidden" name="this_is_the_login_form" value="1" />
+					<input type="hidden" name="next" value="/" />
+					<input type="submit" class="button" value="Log In" />
+					</form>	
+				{% endif %}
+			{% endblock user_auth %}
+	</div>
+	</div>
 	
-	<img src="http://hstatic.net/IT/drop-box-icon.png"></img>
-	
+	<div id="logo">
+		<img src="/site_media/images/logo-top.jpg" />
+		<img src="/site_media/images/logo2.jpg" />
+		<img src="/site_media/images/logo-bottom.jpg" />
+	</div>
+<span class="preload1"></span> 
+<span class="preload2"></span> 
+
+<ul id="nav"> 
+	<li class="top"><a href="/" class="top_link"><span>Home</span></a></li> 
+	<li class="top"><a href="#" id="products" class="top_link"><span class="down">Core Data</span></a> 
+		<ul class="sub"> 
+			<li><a href="/tags/">Tag(set) Builder</a> </li>
+			<li><a href="http://10.3.20.34/reports/" target="_blank" class="lock">Reports</a> </li>
+		</ul> 
+	</li> 
+	<li class="top"><a href="#nogo22" id="services" class="top_link"><span class="down">Google</span></a> 
+		<ul class="sub"> 
+			<li><a target="_blank" href="http://docs.google.com/a/hisg.org">Docs</a></li> 
+			<li><a target="_blank" href="http://mail.google.com/a/hisg.org">Mail</a></li> 
+			<li><a target="_blank" href="http://calendar.google.com/a/hisg.org">Calendar</a></li> 
+			<li><a target="_blank" href="http://sites.google.com/a/hisg.org">Sites</a></li> 
+		</ul> 
+	</li> 
+	<li class="top"><a href="#nogo27" id="contacts" class="top_link"><span class="down">Thinkmap</span></a> 
+		<ul class="sub">
+			<li><a href="#nogo29" class="fly">Admin</a> 
+				<ul> 
+					<li><a href="#nogo33" class="fly">Sync</a> 
+						<ul> 
+							<li><a href="#nogo34" class="lock">Haiti</a> </li>
+							<li><a href="#nogo34" class="lock">Main</a> </li>
+							<li><a href="#nogo34" class="lock">HISG</a> </li>
+						</ul> 
+					</li> 
+					<li><a href="http://10.3.20.16/SqlDataSource/tas_status/" target="_blank" class="lock">Server Status</a></li> 
+				</ul> 
+			</li> 
+			<li><a href="http://10.3.20.16/PeopleCentric/applet-packaged.html" target="_blank" class="lock">Contact Centric</a></li>
+			<li><a href="http://10.3.20.16/SqlDataSource/applet-packaged.html" target="_blank" class="lock">6 Degrees</a></li>
+			<li><a href="http://10.3.20.16/HaitiResponse/applet-packaged.html" target="_blank" class="lock">Haiti Response</a></li>
+			<li><a href="http://10.3.20.16/hisg/applet-packaged.html" target="_blank" class="lock">HISG Show-off</a></li> 
+		</ul> 
+	</li> 
+	<li class="top"><a href="#nogo53" id="shop" class="top_link"><span class="down">Web Sites</span></a> 
+		<ul class="sub"> 
+			<li><a href="http://www.starfishcommunity.net" class="fly" target="_blank">StarfishCommunity</a>
+				<ul> 
+					<li><a href="http://starfishcommunity.net/admin/" target="_blank">Admin</a> </li>
+				</ul> 
+			</li> 
+			<li><a href="http://IDRN.info" class="fly" target="_blank">IDRN.info</a>
+				<ul> 
+					<li><a href="http://idrn.info/admin/" target="_blank">Admin</a> </li>
+				</ul> 
+			</li> 
+			<li><a href="http://www.hisg.org" class="fly" target="_blank">HISG.org</a>
+				<ul> 
+					<li><a href="http://www.hisg.org/admin/" target="_blank">Admin</a> </li>
+				</ul> 
+			</li>
+			<li><a href="http://go.hisg.org" class="fly-lock" target="_blank">GO.HISG.org</a>
+				<ul> 
+					<li><a href="http://10.3.20.34/admin/" target="_blank" class="lock">Admin</a> </li>
+				</ul> 
+			</li>
+		</ul> 
+	</li> 
+</ul>
+ 
+ <div id="logo-inner">
+		<img src="/site_media/images/logo-top.jpg" />
+	<div id="inner">
+		{% if messages %}
+			<div id="messages">
+			    {% for message in messages %}
+			    <div class="message" id="msg_{{ forloop.counter }}"><a href="" class="closebtn" title="Close Message">X</a>{{ message }}</div>
+			    {% endfor %}
+			</div>
+		{% endif %}
+		
+		{% block body %}
+ 		{% endblock body %}
+	</div>
+			<img src="/site_media/images/logo-bottom.jpg" />
+		</div>
+
+<div id="footer">
+	<i>&copy; 2010 Humanitarian International Services Group.</i>
+</div>
+
+</div>
+
+
+
 </body>
 </html>	

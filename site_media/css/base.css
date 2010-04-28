@@ -1,0 +1,110 @@
+/*body { text-align: center; margin: 15 0 0 0; vertical-align: middle; background-color: #336699; background-image: url(/site_media/images/bg.png); background-repeat: repeat-x; }*/
+
+body {
+background-color:#E4E4E5;
+color:#424242;
+font-family:Verdana;
+font-size:11px;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+line-height:normal;
+margin: 0 0 0 0;
+text-transform:none;
+}
+
+#left { width: 360px; text-align: left; margin: 0 auto; background-color: green; float: left; }
+#right { width: 360px; text-align: left; margin: 0 auto; background-color: green; float: right;}
+#content { width: 860px; text-align: left; margin: 0 auto; margin-bottom: 30px; border: 1px solid gray; border-top: none; background-color: white; }
+
+#loginheader{
+background-color: white;
+background-image: url(/site_media/images/logo-extend.jpg); background-repeat: repeat-y;
+display: block;
+width: 860px;
+height: 25px;
+}
+
+#footer{
+background-color: white;
+background-image: url(/site_media/images/logo-extend.jpg); background-repeat: repeat-y;
+display: block;
+width: 860px;
+height: 15px;
+text-align: center;
+}
+
+
+#logo{
+background-color: white;
+margin: 0 0 0 0;
+padding-top: 0px;
+}
+
+#logo-inner{
+background-image: url(/site_media/images/header.jpg); background-repeat: repeat-x;
+margin: 0 0 0 0;
+padding-top: 0px;
+}
+
+#login {
+display: block;
+color: black;
+text-align: right;
+padding: 0 0 0 0;
+float: right;
+height: 25px;
+}
+
+#inner {
+padding: 5 10 10 10;
+background-image: url(/site_media/images/main-bg.jpg); background-repeat: repeat-y;
+}
+
+.button{
+background-color:#4667c5;
+border:1px solid gray;
+color:#EEEEEE;
+cursor: pointer;
+display:inline-block;
+font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+font-size:11px;
+font-weight:bold;
+margin:0;
+outline:medium none;
+padding:3 3 3 3;
+white-space:nowrap;
+}
+
+.noclicklink {
+background-color:#4667c5;
+border:1px solid gray;
+color:#EEEEEE;
+cursor: pointer;
+display:inline-block;
+font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+font-size:11px;
+font-weight:bold;
+margin:0;
+outline:medium none;
+padding:3 3 3 3;
+white-space:nowrap;
+text-decoration: none;
+min-height: 17px;
+}
+
+#newtag{
+display: none;
+}
+
+#edittag{
+display: none;
+}
+
+
+#removetag{
+ margin-top: 5px;
+ display: inline block;
+ float: right;
+}
+

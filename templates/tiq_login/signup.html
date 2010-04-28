@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block page_scripts %}
+<script type="text/javascript">
+    $(document).ready(function() {$('#id_fullname').focus()});
+</script>
+{% endblock page_scripts%}
+
+{% block page_title %}Login{% endblock page_title %}
+
+{% block body %}
+
+<div id="signup">
+
+<h3>Create a new account</h3>
+
+<form action='' method="POST">
+	
+{% if form.username.errors %}
+{{ form.username.errors }}
+{% endif %}
+<label for="username">Username: <span class="small">Use to log in</span></label>
+<input type="text" name="username" id="id_username"/>
+
+{% if form.fullname.errors %}
+{{ form.fullname.errors }}
+{% endif %}
+<label for="fullname">Screen Name: <span class="small">ex: Bob Smith</span></label>
+<input type="text" name="fullname" id="id_fullname"/>
+
+{% if form.email.errors %}
+{{ form.email.errors }}
+{% endif %}
+<label for="email">Email: <span class="small">We won't spam you!</span></label>
+<input type="text" name="email" id="id_email" />
+
+{% if form.password.errors %}
+{{ form.password.errors }}
+{% endif %}
+<label for="password">Password: <span class="small">Create a password.</span></label>
+<input type="password" name="password" id="id_password"/>
+<!--
+{% if form.orgcode.errors %}
+{{ form.orgcode.errors }}
+{% endif %}
+<label for="orgcode">Org Code: <span class="small">Optional</span></label>
+<input type="text" name="orgcode" id="id_orgcode"/>
+-->
+<button type="submit">Sign Up*</button>
+
+</form>
+
+<p class="legal">*By submitting this form, you acknowledge that you have read and will abide by the Terms of Service and Privacy Policy of this site.</p>
+</div> <!-- end #signup -->
+
+<div id="signup-help">
+<h3>What information do I need to get started?</h3>
+<p>To get started, we just need some very basic information.</p>
+<ul>
+	<li><strong>Username</strong> - You'll use this to log in. Letters and numbers only, please.</i></li>
+	<li><strong>Screen Name</strong> - Because this is a community site rooted in real-world relationships, we encourage you to <i>use your real first and last name</i>. The name you enter here will be used to identify your posts and interactions. <i>If you are engaged in security-sensitive work, it is acceptable to use an alias.</i></li>
+	<li><strong>Email</strong> - Your email address is required to validate your account. We'll also use it to send any updates you subscribe to. We won't display your email address on the site unless you tell us to make it available to particular users and groups that you trust.</li>
+	<li><strong>Password</strong> - Create a password for your account. Please create a strong password that uses letters and numbers and is not easily guessed. Avoid names and dates and words found in the dictionary.</li>
+	<li><strong>Org Code</strong> - <i>This is optional.</i> If the organization that invited you to join this site gave you a code, enter it here to link your account to that organization. If you don't have a code, just leave it blank. If you get a code later, or have more than one code, there is a tool in the user profile you can use later to link your account to organizations.</li>
+</div>
+
+<div class="clear"></div>
+
+<h3>Benefits of creating a free account</h3>
+<p>We hope this site has plenty to offer the casual visitor, but to really get the most out of it, you'll need an account to take part in the conversations. In addition, you'll have access to these features:</p>
+<ul>
+   <li>Post new topics for conversation and take part in existing conversations.</li>
+   <li>Complete your capability profile to share your HIST and IDR capabilities and regional interests with the community.</li>
+   <li>Access a customized home page with topics related to your capabilities and interests.</li>
+   <li>Connect to organizations and share your capability profile with organizational leadership.</li>
+   <li>Subscribe for email updates when topics you're watching get new replies.</li>
+</ul>
+<p>These are just a few of the features members have access to, and we're adding more all the time. Best of all, standard individual membership is free and always will be. So create your account today and get started on your capability profile.</p>
+
+{% endblock body %}

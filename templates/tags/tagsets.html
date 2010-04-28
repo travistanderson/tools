@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page_title %}Tagsets{% endblock page_title %}
+
+{% block page_scripts %}
+{% endblock page_scripts%}
+
+{% block body %}
+	<p>
+		This is a list of the current Tag-sets used by HISG.  Select a Tag set you wish to add a tag to, or click "Add New" below to add a new Tag-set.  Adding a new Tag-set should be approved by the development team before proceeding.
+	</p>
+	
+	<div id="tagsets">
+		{% for tag in tagsets %}
+			<a href="{{tag.id}}">{{tag.name}}</a>
+			<br />
+		{% endfor %}
+		<br />
+		<br />
+		<br />
+		<p>
+		<a href="new" class="noclicklink">Add New Tag-set</a>
+		</p>
+	</div>
+{% endblock body %}
