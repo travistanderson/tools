@@ -8,23 +8,23 @@
 
 <div id="signup" style="padding-left: 20px;">
 
-<h3>Log In</h3>
+<h3 style="width:440px; text-align: right; padding-bottom:5px;">Log In</h3>
 
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 <form action="{{ app_path }}" method="post" id="login-form">
-  <div class="form-row">
+  <div class="form-row" style="width:500px; text-align: right; padding-bottom:5px;">
     <label for="id_username">{% trans 'Username:' %}</label> <input type="text" name="username" id="id_username" />
   </div>
-  <div class="form-row">
-    <label for="id_password">{% trans 'Password:' %}</label> <input type="password" name="password" id="id_password" />
+  <div class="form-row" style="width:500px; text-align: right; padding-bottom:5px">
+    <label for="id_password">{% trans 'Password:&nbsp;' %}</label> <input type="password" name="password" id="id_password" />
     <input type="hidden" name="this_is_the_login_form" value="1" />
   </div>
-  <div class="submit-row">
+  <div class="submit-row" style="width:500px; text-align: right;">
     <input type="hidden" name="next" value="{{ next }}" />
-    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
+    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" class="button"/>
   </div>
 </form>
 
@@ -32,12 +32,10 @@
 
 <div id="signup-help">
 
-<p style="padding-top: 32px; margin-right: 100px;">You must log in to access that content.</p>
-<p style="padding-top: 32px; margin-right: 100px;">If you do not have an account, you can <a href="/user/signup">sign up here.</a></p>
+<p style="padding-top: 32px; width:530px; text-align: right;">You must log in to access that content.</p>
 </div>
 
 <script type="text/javascript">
 document.getElementById('id_username').focus()
 </script>
-</div>
 {% endblock body %}

@@ -39,10 +39,11 @@
 								----------	<a href="{{gchild.tagId}}">{{gchild.tagName}}</a> <br />	
 							{% endfor %}
 						{% endfor %}
+						<br />
 				{% else %}
 					<a href="{{tag.tagId}}">{{tag.tagName}}</a> <br />
 				{% endif %}
-				<br />
+				
 			{% endfor %}
 			<br />
 			<br />
@@ -50,13 +51,15 @@
 	{% else %}
 	
 		<p>
-			<div id="removetag">
-				<input type="submit" class="button" style="display: inline block; float: right;" onclick="setDisplay('edittag', 'block');return false;" value="Edit This Tag" />
+			<div id="removetag" style="display: inline block; float: right;">
+				&nbsp;&nbsp;&nbsp;
 				<form action="" method="post" id="removetag-form" style="display: inline block; float: right;">
+					&nbsp;&nbsp;&nbsp;	
 					<input type="hidden" name="this_is_the_removetag_form" value="1" />
 					<input type="submit" class="button" value="Delete This Tag" />
 				</form>	
 				&nbsp;&nbsp;&nbsp;
+				<input type="submit" class="button" style="display: inline block; float: right; padding-right: margin-right: 10px;" onclick="setDisplay('edittag', 'block');return false;" value="Edit This Tag" />
 			</div>
 			There are no tags listed under <i>{{tag_name}}.</i>
 		</p>	

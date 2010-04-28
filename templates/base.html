@@ -112,7 +112,7 @@
 		{% if messages %}
 			<div id="messages">
 			    {% for message in messages %}
-			    <div class="message" id="msg_{{ forloop.counter }}"><a href="" class="closebtn" title="Close Message">X</a>{{ message }}</div>
+			    <div class="message" id="msg_{{ forloop.counter }}" style="color: red; width: 860; text-align: center;">{{ message }}</div>
 			    {% endfor %}
 			</div>
 		{% endif %}
