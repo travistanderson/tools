@@ -121,6 +121,9 @@ def tags(request, tag_id):
 				#if were here, session expired, so lets fix that issue
 				request.user.message_set.create(message='Your DFS Session has expired, please log in again to continue.')
 				return HttpResponseRedirect('/user/login?next=/tags/' + str(tag_id) )
+			else:
+				request.user.message_set.create(message=err)
+				return HttpResponseRedirect('/user/login?next=/tags/' + str(tag_id) )
 	
 	hasTags = True
 	if len(tags) == 0:
