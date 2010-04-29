@@ -29,7 +29,6 @@ def tagsets(request):
 			break
 		retval.append({'id':row[0], 'name':row[1] })
 	
-	print retval
 	return render_to_response('tags/tagsets.html', {
 		'tagsets':retval,
 		'user':request.user,
@@ -143,7 +142,6 @@ def _getTags(request, tag_id):
 	
 	db = MySQLdb.connect(DFS_HOSTNAME, DFS_USERNAME, DFS_PASSWORD, DFS_DATABASE)
 	dfs = db.cursor()
-	print tag_id
 	dfs.execute("SELECT id, name, ord from Tag where parent = " + tag_id + " order by ord" )
 	
 	while(1):
