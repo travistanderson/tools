@@ -9,6 +9,15 @@
 	{
     	document.getElementById(id).style.display = value; 
 	} 
+	
+	function confirmSubmit()
+	{
+		var agree=confirm("Are you sure you wish to DELETE this tag?");
+		if (agree)
+			return true ;
+		else
+			return false ;
+	}
 </script>
 {% endblock page_scripts%}
 
@@ -56,7 +65,7 @@
 				<form action="" method="post" id="removetag-form" style="display: inline block; float: right;">
 					&nbsp;&nbsp;&nbsp;	
 					<input type="hidden" name="this_is_the_removetag_form" value="1" />
-					<input type="submit" class="button" value="Delete This Tag" />
+					<input type="submit" onclick="return confirmSubmit();" class="button" value="Delete This Tag" />
 				</form>	
 				&nbsp;&nbsp;&nbsp;
 				<input type="submit" class="button" style="display: inline block; float: right; padding-right: margin-right: 10px;" onclick="setDisplay('edittag', 'block');return false;" value="Edit This Tag" />
