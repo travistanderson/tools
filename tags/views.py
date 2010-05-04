@@ -48,24 +48,36 @@ def tags(request, tag_id):
 		
 		if request.POST.has_key('this_is_the_newtag_form'):
 			#need to get data from the parent tag to fill out the data for the new tag.
-			dfs.execute("SELECT max(tagset), max(ord) from Tag where parent = " + str(tag_id) )
+			dfs.execute("SELECT id, name from tagset where id = " + tag_id)
 			row = dfs.fetchone()
-			if row[0] == None:
-				dfs.execute("SELECT tagset from Tag where id = " + str(tag_id) )
-				tset = dfs.fetchone()[0]
-				tord = 1
+			
+			if row == None:
+				dfs.execute("SELECT max(tagset), max(ord) from Tag where parent = " + str(tag_id) )
+				row = dfs.fetchone()
+				if row[0] == None:
+					dfs.execute("SELECT tagset from Tag where id = " + str(tag_id) )
+					tset = dfs.fetchone()[0]
+					tord = 1
+				else:
+					tset = row[0]
+					tord = row[1] + 1
+				try:
+					client.execute('entity.new', { 'class_name':'Tag', 'name':request.POST['newtag'], 'parent':tag_id, 'ord':tord, 'tagset':tset, 'oldId':0 } )
+				except Exception, err:
+					if "Invalid Session" in str(err):
+						#if were here, session expired, so lets fix that issue
+						request.user.message_set.create(message='Your DFS Session has expired, please log in again to continue.')
+						return HttpResponseRedirect('/user/login?next=/tags/' + str(tag_id) )
 			else:
 				tset = row[0]
-				tord = row[1] + 1
-			try:
-				client.execute('entity.new', { 'class_name':'Tag', 'name':request.POST['newtag'], 'parent':tag_id, 'ord':tord, 'tagset':tset, 'oldId':0 } )
-			except Exception, err:
-				if "Invalid Session" in str(err):
-					#if were here, session expired, so lets fix that issue
-					request.user.message_set.create(message='Your DFS Session has expired, please log in again to continue.')
-					return HttpResponseRedirect('/user/login?next=/tags/' + str(tag_id) )
-		
-		
+				dfs.execute("SELECT max(ord) from Tag where tagset = " + tag_id)
+				tord = dfs.fetchone()[0] + 1
+				try:
+					client.execute('entity.new', { 'class_name':'Tag', 'name':request.POST['newtag'], 'parent':0, 'ord':tord, 'tagset':tset, 'oldId':0 } )
+				except Exception, err:
+					if "Invalid Session" in str(err):
+						request.user.message_set.create(message='Your DFS Session has expired, please log in again to continue.')
+						return HttpResponseRedirect('/user/login?next=/tags/' + str(tag_id))
 		elif request.POST.has_key('this_is_the_removetag_form'):
 			#first, we need to see if there are any tags under this tag.  If it has children, we dont allow deleting it!
 			dfs.execute("SELECT count(*) from Tag where parent = " + str(tag_id) )
